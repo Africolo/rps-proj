@@ -13,50 +13,64 @@ function getHumanChoice() {
 }
 
 function getComputerChoice() {
-  let cpuObj = Math.floor(Math.random() * 3);
-  if (cpuObj === 1) {
-    let object = "rock";
+  let object = null;
+  let cpuObject = Math.floor(Math.random() * 3);
+  if (cpuObject === 0) {
+    object = "rock";
     console.log(`Cpu chose: ${object}`);
-    alert("*********************");
     alert("Analyzing Data...");
-  } else if (cpuObj === 2) {
-    let object = "paper";
+  } else if (cpuObject === 1) {
+    object = "paper";
     console.log(`Cpu chose: ${object}`);
-    alert("*********************");
-    alert("Analyzing Data...");
-  } else if (cpuObj === 1) {
-    let object = "scissors";
+    console.log("Analyzing Data...");
+  } else if (cpuObject === 2) {
+    object = "scissors";
     console.log(`Cpu chose: ${object}`);
-    console.log("*********************");
-    alert("Analyzing Data...");
+    console.log("Analyzing Data...");
   }
-  return cpuObj;
+  return object;
 }
 let humanScore = 0;
 let cpuScore = 0;
-function playRound(humanChoice, cpuChoice) {
-  if (humanChoice == cpuChoice) {
-    console.log("It's a tie!");
-    alert(`Cpu score: ${cpuScore} Your score: ${humanScore}`);
-  } else if (
-    (humanChoice === "rock" && cpuChoice === "paper") ||
-    (humanChoice === "paper" && cpuChoice === "scissors") ||
-    (humanChoice === "scissors" && cpuChoice === "rock")
-  ) {
-    cpuScore++;
-    console.log(`You lose!`);
-    alert(`Cpu score: ${cpuScore} Your score: ${humanScore}`);
-  } else if (
-    (humanChoice === "paper" && cpuChoice === "rock") ||
-    (humanChoice === "scissors" && cpuChoice === "paper") ||
-    (humanChoice === "rock" && cpuChoice === "scissors")
-  ) {
-    humanScore++;
-    console.log("You win!");
-    alert(`Cpu score: ${cpuScore} Your score: ${humanScore}`);
-  }
-  return humanChoice, cpuChoice;
-}
+
 const humanSelector = getHumanChoice();
 const cpuSelector = getComputerChoice();
-playRound(humanSelector, cpuSelector);
+
+function playGame(x) {
+  function playRound(humanChoice, cpuChoice) {
+    if (
+      (humanChoice === "rock" && cpuChoice === "paper") ||
+      (humanChoice === "paper" && cpuChoice === "scissors") ||
+      (humanChoice === "scissors" && cpuChoice === "rock")
+    ) {
+      cpuScore++;
+      alert(`You lose!`);
+      alert(`Cpu score: ${cpuScore} Your score: ${humanScore}`);
+    } else if (
+      (humanChoice === "paper" && cpuChoice === "rock") ||
+      (humanChoice === "scissors" && cpuChoice === "paper") ||
+      (humanChoice === "rock" && cpuChoice === "scissors")
+    ) {
+      humanScore++;
+      alert("You win!");
+      alert(`Cpu score: ${cpuScore} Your score: ${humanScore}`);
+    } else {
+      alert(`It's a draw!!!`);
+      alert(`Cpu score: ${cpuScore} Your score: ${humanScore}`);
+    }
+    return humanScore, cpuScore;
+  }
+  let cpuScore = 0;
+  let humanScore = 0;
+  if (cpuScore === 3) {
+    console.log("Cpu WINS!");
+  } else if (humanScore === 3) {
+    console.log("You win!");
+  }
+  for (let i = 1; i <= x; i++) {
+    alert("Playing another round...");
+    playRound(getHumanChoice(), getComputerChoice());
+  }
+  return humanScore, cpuScore;
+}
+playGame(5);
