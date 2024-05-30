@@ -48,11 +48,11 @@ function getComputerChoice() {
   }
   return object;
 }
+
 let humanScore = 0;
 let cpuScore = 0;
+
   function playRound(humanChoice, cpuChoice){
-let humanScore = 0;
-let cpuScore = 0;
     if (
       (humanChoice === "rock" && cpuChoice === "paper") ||
       (humanChoice === "paper" && cpuChoice === "scissors") ||
@@ -60,7 +60,7 @@ let cpuScore = 0;
     ) {
       cpuScore++;
       message.textContent = "You lose!"
-      message2.textContent = "The scores are... Cpu: " + cpuScore + " You: " + humanScore;
+      message2.textContent = `Your score: ${humanScore} and Cpu score: ${cpuScore}`;
     } else if (
       (humanChoice === "paper" && cpuChoice === "rock") ||
       (humanChoice === "scissors" && cpuChoice === "paper") ||
@@ -68,12 +68,26 @@ let cpuScore = 0;
     ) {
       humanScore++;
       message.textContent = "You win!";
-      message2.textContent = "The scores are... Cpu: " + cpuScore + " You: " + humanScore;
-    } else if (humanChoice === cpuChoice){
+      message2.textContent = `Your score: ${humanScore} and Cpu score: ${cpuScore}`;
+    } else if (humanChoice === "rock" && cpuChoice === "rock" ||
+               humanChoice === "paper" && cpuChoice === "paper" ||
+               humanChoice === "scissors" && cpuChoice === "scissors")
+    {
       message.textContent = "Draw!!"
-      message2.textContent = "The scores are... Cpu: " + cpuScore + " You: " + humanScore;
+      message2.textContent = `Your score: ${humanScore} and Cpu score: ${cpuScore}`;
     }
-    return humanScore, cpuScore;
+    if(humanScore === 5){
+      message.textContent = "YOU WON!";
+      message2.textContent = "";
+      humanScore = 0;
+      cpuScore = 0;
+    }
+    else if(cpuScore === 5){
+      message.textContent = "CPU WINS!";
+      message2.textContent = "";
+      humanScore = 0;
+      cpuScore = 0;
+    }
 }
   div.appendChild(p)
   div.appendChild(rock);

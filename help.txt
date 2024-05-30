@@ -1,6 +1,0 @@
-So when ever I try to insert one of the values of rock paper scissors I get an error message.
-But I am inputting the correct val
-
-    (humanChoice === "rock" && computerChoice === "paper") ||
-    console.log(`Your score is: ${humanScore} computerScore is ${computerScore}`) 
-humanChoice === "rock"&& computerChoice === "paper"
